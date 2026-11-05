@@ -1,0 +1,35 @@
+# Site settings. GitHub Pages reads this file to build the site.
+title: "Nice Dela Cruz · Governance, Policy & Capacity Development"
+description: "Crystal Eunice “Nice” Dela Cruz: Senior Lecturer at UP NCPAG, governance, policy and capacity development consultant, and creator of Nice to Know (@missniceph)."
+url: "https://missniceph.github.io"
+baseurl: ""
+author: "Crystal Eunice Dela Cruz"
+lang: en
+timezone: Asia/Manila
+
+# Each update lives at /updates/year/month/title/
+permalink: /updates/:year/:month/:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+feed:
+  path: updates/feed.xml
+
+# Every file in _posts automatically uses the article layout
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - LICENSE*

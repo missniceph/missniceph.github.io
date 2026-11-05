@@ -1,50 +1,60 @@
 # Nice Dela Cruz: personal website
 
-This is a one-page website. It uses three files:
+Live at **https://missniceph.github.io**
 
-- `index.html`: all the words on the page
-- `styles.css`: colours, fonts and layout
-- `images/`: your headshot goes here
+## What's here and how to update it
 
-To make a small change, open the file on GitHub, click the pencil icon (✏️), make your edit, and click **Commit changes**. The live site updates within a minute or two.
+| File or folder | What it is | When you'd touch it |
+|---|---|---|
+| `index.html` | All the words and links on the page | To change any text, link or role |
+| `styles.css` | Colours, fonts and layout | To change colours (see below) |
+| `images/headshot.jpg` | Your photo | To change your photo |
+| `images/share.png` | The preview picture that shows when someone shares your link | Rarely. Ask Claude to regenerate it if your title changes |
+| `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | The little "N" icon in browser tabs and on phone home screens | Never, unless you rebrand |
+| `fonts/` | The two typefaces (Fraunces and Inter), stored with the site so it loads fast | Never |
+| `404.html` | The "page not found" page | Never |
+| `.nojekyll` | Tells GitHub to publish the files exactly as they are | Never. Don't delete it |
 
-## Replace the headshot
+**The easy way to edit:** open a file on GitHub, click the pencil icon (✏️), make your change, then click **Commit changes**. The live site updates in about a minute. If you don't see the change, refresh the page, or open it in a private or incognito window.
 
-1. Pick a photo. Portrait or square shapes work best. Keep it under about 500 KB so the page loads fast.
-2. Rename it to exactly **`headshot.jpg`** (all lowercase).
-3. On GitHub, open the `images` folder, click **Add file → Upload files**, drop in the photo, and commit.
+## Change your photo
 
-The photo replaces the "N" placeholder automatically. If you only have a `.png`, either convert it to `.jpg` or open `index.html`, search for `images/headshot.jpg`, and change it to `images/headshot.png`.
+1. Use a portrait or square photo, about 800 pixels wide and under about 200 KB. A phone photo is fine; you can shrink it for free at squoosh.app.
+2. Name it exactly **`headshot.jpg`** (all lowercase).
+3. On GitHub, open the `images` folder, click **Add file → Upload files**, drop it in, and commit. It replaces the old one.
+
+If the photo is ever missing, the page shows a large "N" instead of a broken image.
 
 ## Edit text
 
-Open `index.html` and search (Ctrl+F or Cmd+F) for the words you want to change. Each section has a big comment header like `<!-- ===== ABOUT ===== -->`, which makes it easy to find your place. Only change the words *between* the tags, for example:
+Open `index.html` and search (Ctrl+F or Cmd+F) for the words you want to change. Each section starts with a big comment header like `<!-- ===== ABOUT ===== -->`. Change only the words *between* the tags:
 
 ```html
 <h3>Chief of Staff</h3>
 ```
 
-- **Positioning line:** near the top, look for `POSITIONING STATEMENT`. There are three options in the comment. Copy the one you like into the line just below it, the one that starts with `<p class="lede">`.
-- **Adding dates to your experience:** each role has an empty `<p class="when"></p>`. Type a date inside it, for example `<p class="when">2019 – 2022</p>`. Empty ones stay hidden.
+- **The line under your name:** search for `POSITIONING STATEMENT`. Three options are in the note just above it. Copy the one you want into the line that starts with `<p class="lede">`.
+- **Dates for your roles:** each role has an empty `<p class="when"></p>`. Type a date inside, for example `<p class="when">2019 – 2022</p>`. Empty ones stay hidden.
+- **Curly quotes and apostrophes:** the page uses ’ and “ ” rather than ' and ". Either works; the curly ones just look more polished.
 
-## Add your email
+## Your email
 
-Search `index.html` for `YOUR-EMAIL-NAME`. Split your email at the **@**:
+Search `index.html` for `data-user`. Your email is split at the **@**:
 
 ```html
-data-user="nice" data-domain="example.com"
+data-user="delacruzcrystaleunice" data-domain="gmail.com"
 ```
 
-(That example is for `nice@example.com`.) The page puts the address together only when someone clicks **Email me**, so your email never appears on the page as plain text and is harder for spam bots to collect.
+The page puts it together only when someone uses the **Email me** button, so it never appears as text and is harder for spam bots to collect.
 
-## Add your LinkedIn
+## Social media links
 
-Search `index.html` for `YOUR-LINKEDIN-URL` and replace the whole link with your profile address, for example `https://www.linkedin.com/in/your-name/`.
-
-## Edit your social media links
-
-Your Instagram, Facebook, Threads, YouTube and TikTok icons appear in two places: the Contact section and the footer at the bottom of the page. In `index.html`, search for `missniceph` to find every link. To change one, edit the address inside `href="..."`, and remember to change it in both places. To remove one, delete its whole line, the one that starts with `<li>`.
+Search `index.html` for `missniceph`. Your links appear in **three** places: the hero and Nice to Know buttons (Instagram), the Contact section icons, and the footer. To change one, edit the address inside `href="..."` everywhere it appears. To remove an icon, delete its whole line, the one that starts with `<li>`.
 
 ## Change colours
 
-At the top of `styles.css` there's a list of colours. `--accent` is the terracotta used for buttons and highlights. The second list, a little further down, sets the dark-mode colours.
+At the top of `styles.css` is a list of colours. `--accent` is the terracotta used for buttons and highlights. The second list, a little further down, is for dark mode. If you change `--accent`, keep it dark enough for small text to stay readable. The current colour was chosen to pass accessibility contrast checks.
+
+## Social share preview
+
+When your link is pasted into Facebook, Messenger, Viber, LinkedIn or X, it shows `images/share.png` with your name and title. To check it, or to make Facebook refresh an old preview, paste your link into Facebook's Sharing Debugger: https://developers.facebook.com/tools/debug/

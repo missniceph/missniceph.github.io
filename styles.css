@@ -1,4 +1,13 @@
 /* ==========================================================
+   Fonts (stored in the /fonts folder; free under the SIL Open Font License)
+   ========================================================== */
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/fraunces-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/fraunces-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/fraunces-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/inter-latin-600-normal.woff2") format("woff2"); }
+
+/* ==========================================================
    Colours. Change these to restyle the whole site.
    ========================================================== */
 :root {
@@ -8,8 +17,8 @@
   --text: #1f1b17;
   --muted: #5e554c;
   --line: #e2d9cc;
-  --accent: #b4532a;        /* terracotta */
-  --accent-strong: #933f1c;
+  --accent: #a3471f;        /* terracotta (dark enough for small text to pass WCAG AA) */
+  --accent-strong: #873a18;
   --accent-soft: #f6e3d8;
   --on-accent: #ffffff;
   --shadow: 0 1px 2px rgba(40, 25, 10, .05), 0 8px 24px rgba(40, 25, 10, .06);
@@ -67,10 +76,10 @@ body {
   transition: background-color .2s, color .2s;
 }
 
-h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.01em; }
+h1, h2, h3 { text-wrap: balance; font-family: var(--serif); font-weight: 600; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.01em; }
 h2 { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem); }
 h3 { font-size: 1.3rem; }
-p { margin: 0 0 1em; }
+p { margin: 0 0 1em; text-wrap: pretty; }
 a { color: var(--accent); }
 img { max-width: 100%; display: block; }
 em { font-style: italic; }
@@ -78,6 +87,9 @@ em { font-style: italic; }
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .narrow { max-width: 760px; }
 .center { text-align: center; }
+
+/* Text only screen readers announce */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .skip-link { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--on-accent); padding: 8px 14px; border-radius: 6px; z-index: 100; }
 .skip-link:focus { left: 8px; }
@@ -95,17 +107,18 @@ em { font-style: italic; }
   border-bottom: 1px solid var(--line);
 }
 .header-inner { display: flex; align-items: center; gap: 24px; height: 60px; }
-.brand { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--text); text-decoration: none; margin-right: auto; }
+.brand { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--text); text-decoration: none; margin-right: auto; padding: 10px 0; }
 .nav { display: flex; gap: 22px; }
-.nav a { color: var(--muted); text-decoration: none; font-size: .92rem; font-weight: 500; }
+.nav a { color: var(--muted); text-decoration: none; font-size: .92rem; padding: 6px 0; }
 .nav a:hover { color: var(--text); }
 
 .theme-toggle {
-  width: 40px; height: 40px; flex: none;
-  display: grid; place-items: center;
+  width: 44px; height: 44px; flex: none;
+  display: none; place-items: center;
   border: 1px solid var(--line); border-radius: 50%;
   background: var(--surface); color: var(--text); cursor: pointer;
 }
+.js .theme-toggle { display: grid; } /* the toggle needs JavaScript, so it only shows when that's on */
 .theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
 .theme-toggle .icon-moon { fill: currentColor; stroke: none; }
 .icon-sun { display: none; }
@@ -148,7 +161,7 @@ em { font-style: italic; }
 }
 .hero h1 { font-size: clamp(2.4rem, 1.4rem + 4.2vw, 4.4rem); font-weight: 400; letter-spacing: -.02em; margin-bottom: 20px; }
 .nickname { font-style: italic; color: var(--accent); }
-.lede { font-family: var(--serif); font-size: clamp(1.2rem, 1rem + .8vw, 1.5rem); line-height: 1.45; color: var(--text); max-width: 34ch; }
+.lede { text-wrap: balance; font-family: var(--serif); font-size: clamp(1.2rem, 1rem + .8vw, 1.5rem); line-height: 1.45; color: var(--text); max-width: 34ch; }
 .roles { color: var(--muted); font-size: .95rem; }
 
 .portrait { margin: 0; justify-self: end; width: 100%; max-width: 400px; }
@@ -188,7 +201,7 @@ em { font-style: italic; }
 .card p { color: var(--muted); }
 .card-num { display: block; font-family: var(--serif); font-size: .95rem; color: var(--accent); margin-bottom: 18px; }
 .tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.tags li { font-size: .82rem; font-weight: 500; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--text); }
+.tags li { font-size: .82rem; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--text); }
 
 /* Timeline */
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
@@ -208,7 +221,7 @@ em { font-style: italic; }
 /* Nice to Know */
 .ntk { background: var(--accent-soft); }
 .ntk-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-.ntk-grid p { font-size: 1.06rem; margin-bottom: 28px; }
+.ntk-grid p:not(.section-label) { font-size: 1.06rem; margin-bottom: 28px; }
 .ntk-topics { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .ntk-topics li {
   font-family: var(--serif); font-size: 1.25rem;
@@ -223,6 +236,8 @@ em { font-style: italic; }
 /* Footer */
 .site-footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: .88rem; text-align: center; }
 .site-footer p { margin: 0; }
+.site-footer .footer-ig { margin-bottom: 6px; }
+.site-footer a { color: var(--accent); text-underline-offset: 3px; }
 
 /* ==========================================================
    Phones and tablets
@@ -230,11 +245,12 @@ em { font-style: italic; }
 @media (max-width: 900px) {
   .cards { grid-template-columns: 1fr; }
   .ntk-grid { grid-template-columns: 1fr; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .portrait { order: -1; justify-self: start; max-width: 240px; }
 }
 @media (max-width: 760px) {
   body { font-size: 16px; }
-  .hero-grid { grid-template-columns: 1fr; }
-  .portrait { order: -1; justify-self: start; max-width: 220px; }
+  .portrait { max-width: 220px; }
   .actions .btn { flex: 1 1 100%; }
   .card { padding: 24px; }
 }
@@ -251,5 +267,5 @@ em { font-style: italic; }
 .social a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
 .social svg { width: 20px; height: 20px; fill: currentColor; }
 .social-small { gap: 6px; margin-bottom: 14px; }
-.social-small a { width: 40px; height: 40px; border: 0; background: transparent; color: var(--muted); }
+.social-small a { width: 44px; height: 44px; border: 0; background: transparent; color: var(--muted); }
 .social-small svg { width: 18px; height: 18px; }

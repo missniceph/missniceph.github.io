@@ -41,6 +41,10 @@ data-user="nice" data-domain="example.com"
 
 Search `index.html` for `YOUR-LINKEDIN-URL` and replace the whole link with your profile address, for example `https://www.linkedin.com/in/your-name/`.
 
+## Edit your social media links
+
+Your Instagram, Facebook, Threads, YouTube and TikTok icons appear in two places: the Contact section and the footer at the bottom of the page. In `index.html`, search for `missniceph` to find every link. To change one, edit the address inside `href="..."`, and remember to change it in both places. To remove one, delete its whole line, the one that starts with `<li>`.
+
 ## Change colours
 
 At the top of `styles.css` there's a list of colours. `--accent` is the terracotta used for buttons and highlights. The second list, a little further down, sets the dark-mode colours.

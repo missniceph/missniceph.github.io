@@ -238,3 +238,18 @@ em { font-style: italic; }
   .actions .btn { flex: 1 1 100%; }
   .card { padding: 24px; }
 }
+
+/* Social media icons */
+.social-label { margin: 40px 0 14px; font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+#contact p.social-label { font-size: .78rem; color: var(--muted); }
+.social { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.social a {
+  width: 48px; height: 48px; display: grid; place-items: center;
+  border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  transition: color .15s, border-color .15s, transform .15s;
+}
+.social a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+.social svg { width: 20px; height: 20px; fill: currentColor; }
+.social-small { gap: 6px; margin-bottom: 14px; }
+.social-small a { width: 40px; height: 40px; border: 0; background: transparent; color: var(--muted); }
+.social-small svg { width: 18px; height: 18px; }

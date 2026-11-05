@@ -1,0 +1,7 @@
+{%- assign h = include.level | default: 3 -%}
+<article class="post-card">
+  <p class="post-date"><time datetime="{{ include.post.date | date: '%Y-%m-%d' }}">{{ include.post.date | date: "%-d %B %Y" }}</time></p>
+  <h{{ h }} class="post-card-title"><a href="{{ include.post.url }}">{{ include.post.title }}</a></h{{ h }}>
+  <p>{{ include.post.description | default: include.post.excerpt | strip_html | normalize_whitespace | truncatewords: 32 }}</p>
+  <span class="post-card-more" aria-hidden="true">Read update →</span>
+</article>
